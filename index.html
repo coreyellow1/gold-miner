@@ -38,22 +38,31 @@
         letter-spacing: 1px;
         word-spacing: 1px;
         color: #000000;
-        font-weight: 700;
+        font-weight: 500;
         text-decoration: none;
         font-style: normal;
         font-variant: normal;
         text-transform: none;
         margin:10 auto;
       }
+      h4 {
+        margin: 0;
+        margin-left: 10px;
+        vertical-align: -1px;
+        display:inline-block;
+      }
     </style>
   </head>
   <body>
     <h2 id="moneyTotal">$ 0</h2>
     <p><h2 id="goldMined">0 Gold Mined</h2></p>
+    <p><h3 id="goldPerSecondTotal">0 gold per second</h3></p>
     <button onclick="mineGold()">Mine Gold</button>
-    <p><h3>Upgrades</h3></p>
     <p><button onclick="sellGold()">Sell Gold</button></p>
+    <p><h3>Upgrades</h3></p>
     <p><button onclick="buyGoldPerClick()" id="perClickUpgrade">Upgrade Pickaxe (Currently Level 1) Cost: 10 Gold</button></p>
+    <p><h3>Store</h3></p>
+    <button onclick="buyMiner()" id="minerBuy">Buy Miner Cost: $750</button><h4 id="minersTotal">0</h4>
     <script src="main.js" charset="utf-8" type="text/javascript"></script>
   </body>
 </html>
