@@ -7,8 +7,11 @@ var gameData = {
     goldRefineCost: 1000,
     moneyPerGold: 3,
     miners: 0,
+    drills: 0,
     minersCost: 750,
+    drillsCost: 5000,
     minersGoldPerSecond: 1,
+    drillsGoldPerSecond: 5,
   }
   
 
@@ -57,7 +60,21 @@ function buyMiner() {
     document.getElementById("minerBuy").innerHTML = "Buy Miner Cost: $" + Math.floor(gameData.minersCost)
   }
 }
+
+function buyDrill() {
+  if (gameData.money >= gameData.drills) {
+    gameData.money -= gameData.drillsCost
+    gameData.drills += 1
+    gameData.drillsCost *= 1.15
+    gameData.goldPerSecond += gameData.drillsGoldPerSecond
+    document.getElementById("moneyTotal").innerHTML = "$ " + Math.floor(gameData.money)
+    document.getElementById("goldPerSecondTotal").innerHTML = Math.floor(gameData.goldPerSecond) + " gold per second"
+    document.getElementById("drillsTotal").innerHTML = Math.floor(gameData.drills)
+    document.getElementById("drillBuy").innerHTML = "Buy Drill Cost: $" + Math.floor(gameData.drillsCost)
+  }
+}
 var mainGameLoop = window.setInterval(function() {
   gameData.gold += gameData.goldPerSecond / 20
   document.getElementById("goldMined").innerHTML = Math.floor(gameData.gold) + " Gold Mined"
+  document.getElementById("moneyTotal").innerHTML = "$ " + Math.floor(gameData.money)
 }, 50)
