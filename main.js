@@ -1,8 +1,10 @@
 var gameData = {
     gold: 0,
     money: 0,
+    research: 0,
     goldPerSecond: 0,
     goldPerClick: 1,
+    researchCost: 2500,
     goldPerClickCost: 10,
     goldRefineCost: 1000,
     moneyPerGold: 3,
@@ -12,10 +14,11 @@ var gameData = {
     drillsCost: 5000,
     minersGoldPerSecond: 1,
     drillsGoldPerSecond: 5,
+    researchVisible: false,
   }
   
 
-
+  
 function mineGold() {
   gameData.gold += gameData.goldPerClick
   document.getElementById("goldMined").innerHTML = Math.floor(gameData.gold) + " Gold Mined"
@@ -28,6 +31,14 @@ function sellGold() {
   document.getElementById("moneyTotal").innerHTML = "$ " + Math.floor(gameData.money)
 }
 
+function buyResearch() {
+  if (gameData.money >= gameData.researchCost) {
+    gameData.research += 1
+    gameData.money -= gameData.researchCost
+    document.getElementById("moneyTotal").innerHTML = "$ " + Math.floor(gameData.money)
+    document.getElementById("researchTotal").innerHTML = gameData.research + " Research"
+  }
+}
 function buyGoldPerClick() {
   if (gameData.gold >= gameData.goldPerClickCost) {
     gameData.gold -= gameData.goldPerClickCost
@@ -73,8 +84,11 @@ function buyDrill() {
     document.getElementById("drillBuy").innerHTML = "Buy Drill Cost: $" + Math.floor(gameData.drillsCost)
   }
 }
+
 var mainGameLoop = window.setInterval(function() {
   gameData.gold += gameData.goldPerSecond / 20
   document.getElementById("goldMined").innerHTML = Math.floor(gameData.gold) + " Gold Mined"
   document.getElementById("moneyTotal").innerHTML = "$ " + Math.floor(gameData.money)
+  document.getElementById("researchTotal").innerHTML = gameData.research + " Research"
 }, 50)
+
